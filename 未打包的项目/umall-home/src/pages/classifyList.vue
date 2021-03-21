@@ -58,6 +58,13 @@ export default {
       });
     },
     addCarList(goodsid) {
+      if (!sessionStorage.getItem("user")) {
+        Toast.fail("您还没有登录");
+        setTimeout(() => {
+          this.$router.push("/login");
+        }, 1000);
+        return;
+      }
       this.addList.uid = this.user.uid;
       this.addList.goodsid = goodsid;
       // 请求添加购物车列表
